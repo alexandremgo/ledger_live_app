@@ -1,5 +1,6 @@
 {
-  "name": "ll-app-hexa",
+  "name": "simple-ddd-ledger-live-app",
+  "author": "Alexandre Magaud",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
