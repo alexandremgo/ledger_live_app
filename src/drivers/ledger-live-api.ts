@@ -1,7 +1,15 @@
 import LedgerLiveApi, { WindowMessageTransport } from '@ledgerhq/live-app-sdk';
+import { Account, Currency } from '@ledgerhq/live-app-sdk';
 export { LedgerLiveApi };
 
-let llapi: LedgerLiveApi;
+export interface LedgerLiveApiInterface {
+  connect(): void;
+  disconnect(): void;
+  listAccounts(): Promise<Account[]>;
+  listCurrencies(params?: { name?: string; ticker?: string }): Promise<Currency[]>;
+}
+
+let llapi: LedgerLiveApiInterface;
 
 export const getLlapi = () => {
   if (!llapi) {

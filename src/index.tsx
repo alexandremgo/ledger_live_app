@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { getLlapi, disconnectLlapi } from './drivers/ledger-live-api';
+import { getLlapi, disconnectLlapi, LedgerLiveApiInterface } from './drivers/ledger-live-api';
+import { MockLedgerLiveApi } from './drivers/mock-ledger-live-api';
 import { assetRepository } from './repositories/asset-repository';
 
 // Inits the necessary drivers and repositories
-// Here we could mock the ledger-live-api to test other accounts, currencies etc.
-// This mock could be set up depending on an env variable
-const llapi = getLlapi();
+// Here we can mock the ledger-live-api to test other accounts, currencies etc.
+// This mock could be set up depending on an env variable for example.
+const MOCK_LEDGER_LIVE_API_ENABLE = true;
+let llapi: LedgerLiveApiInterface;
+
+if (MOCK_LEDGER_LIVE_API_ENABLE) {
+  llapi = new MockLedgerLiveApi();
+}
+else { 
+  llapi = getLlapi();
+}
 assetRepository(llapi);
 
 // Shuts down gracefully

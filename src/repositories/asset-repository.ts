@@ -1,9 +1,9 @@
 import { assert } from '../utils/errors';
-import { LedgerLiveApi } from '../drivers/ledger-live-api';
+import { LedgerLiveApiInterface } from '../drivers/ledger-live-api';
 import { Asset } from '../domain/asset.entity';
 
 export class AssetRepository {
-  constructor(private readonly llapi: LedgerLiveApi) {}
+  constructor(private readonly llapi: LedgerLiveApiInterface) {}
 
   async getAll(): Promise<Asset[]> {
     const accounts = await this.llapi.listAccounts();
@@ -19,7 +19,7 @@ export class AssetRepository {
 }
 
 let instance: AssetRepository;
-export const assetRepository = (llapi?: LedgerLiveApi) => {
+export const assetRepository = (llapi?: LedgerLiveApiInterface) => {
   if (!instance) {
     assert(llapi, 'An instance of LedgerLiveApi is necessary to instantiate an AssetRepository');
     instance = new AssetRepository(llapi);
