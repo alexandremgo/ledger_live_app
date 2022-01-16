@@ -1,50 +1,38 @@
-# Getting Started with Create React App
+## Why ?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+There are 2 main reasons:
 
-It leverages the [Ledger Live App SDK](https://www.npmjs.com/package/@ledgerhq/live-app-sdk) to start building a Ledger Live App.
+- For fun, I wanted to try to implement a (simplified) DDD architecture in a react app.
+- And I wanted to build a simple Ledger Live App following [this turorial](https://developers.ledger.com/docs/platform-app/tutorial/introduction/).
 
-## Available Scripts
+## What does it do ?
 
-In the project directory, you can run:
+The app gets the info about your assets already known by the Ledger Live Desktop, and displays a fake (that you choose) "annual growth" evolution on each of them.
+It's not useful, neither pretty. The goal was really to try to create a Ledger Live App and implement a simple DDD architecture.
 
-### `yarn start`
+<details>
+  <summary>An incredible screenshot</summary> 
+<img src="./.doc/assets_example.png" alt="Assets example" width="800" />
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## The Architecture
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [domain](./src/domain) contains the domain entities (here [Asset](./src/domain/asset.entity.ts)) and value objects, and thus the business logic. As the business logic is separated from the rest of the app (no front-end, no api calls), it is easier to [test](./src/domain/asset.entity.test.ts).
+- [repositories](./src/repositories) contains the repositories that abstracts the technology used to fetch data.
+- [components](./src/components) contains the front app logic.
+- [drivers](./src/drivers) contains the technology implementation to fetch data from "outside" this application.
 
-### `yarn test`
+## Installation and run
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Normally a simple:
 
-### `yarn build`
+```bash
+# To install the dependencies:
+yarn
+# To run locally:
+yarn start
+# To run the test
+yarn test
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-To learn more about Ledger Live Apps, check out the [Ledger Developer Portal](https://developers.ledger.com/).
+And then follow [this tutorial section](https://developers.ledger.com/docs/platform-app/tutorial/4-test/) to access the app in Ledger Live.
