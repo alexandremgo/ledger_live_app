@@ -10,7 +10,7 @@ import { assetRepository } from './repositories/asset-repository';
 // Inits the necessary drivers and repositories
 // Here we can mock the ledger-live-api to test other accounts, currencies etc.
 // This mock could be set up depending on an env variable for example.
-const MOCK_LEDGER_LIVE_API_ENABLE = true;
+const MOCK_LEDGER_LIVE_API_ENABLE = false;
 let llapi: LedgerLiveApiInterface;
 
 if (MOCK_LEDGER_LIVE_API_ENABLE) {
