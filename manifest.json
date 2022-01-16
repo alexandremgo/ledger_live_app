@@ -1,0 +1,27 @@
+{
+  "id": "mgo-dumb-app",
+  "name": "Mgo App",
+  "url": "http://localhost:3000",
+  "homepageUrl": "https://developers.ledger.com/",
+  "icon": "",
+  "platform": "all",
+  "apiVersion": "0.0.1",
+  "manifestVersion": "1",
+  "branch": "debug",
+  "categories": ["tools"],
+  "currencies": "*",
+  "content": {
+    "shortDescription": {
+      "en": "Dumb MGO app to show off."
+    },
+    "description": {
+      "en": "Dumb MGO app to show off."
+    }
+  },
+  "permissions": [
+    {
+      "method": "*"
+    }
+  ],
+  "domains": ["https://*"]
+}
