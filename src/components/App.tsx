@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { AssetComponenet } from './components/AssetComponent';
-import { Asset } from './domain/asset.entity';
-import { assetRepository } from './repositories/asset-repository';
+import { AssetComponenet } from './AssetComponent';
+import { Asset } from '../domain/asset.entity';
+import { assetRepository } from '../repositories/asset-repository';
 
 export type AppProps = {
   teardown: () => void;

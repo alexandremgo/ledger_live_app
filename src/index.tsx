@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { getLlapi, disconnectLlapi, LedgerLiveApiInterface } from './drivers/ledger-live-api';
 import { MockLedgerLiveApi } from './drivers/mock-ledger-live-api';
