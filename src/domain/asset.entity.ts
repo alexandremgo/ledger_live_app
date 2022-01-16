@@ -34,20 +34,40 @@ export class Asset {
     return new Asset(props, id);
   }
 
-  get accountName() {
+  get accountName(): string {
     return this.props.account.name;
   }
 
-  get balance() {
+  get value(): AssetValue {
     return this.props.account.balance;
   }
 
-  get currencyName() {
+  get currencyName(): string {
     return this.props.currency.name;
   }
 
-  balanceToString(): string {
+  private bigNumberToString(bignumber: BigNumber): string {
     if (this.props.currency.units.length === 0) {
+      return bignumber.toString();
+    }
+    return formatCurrencyUnit(this.props.currency.units[0], bignumber);
+  }
+
+  valueToString(): string {
+    return this.bigNumberToString(this.value);
+  }
+
+  evolutionAtADay(day: number): AssetValue {
+    if (day < 0 || day > MAX_EVOLUTION_DAY) {
+      return new BigNumber(0);
+    }
+    return this.evolution[day];
+  }
+
+  evolutionAtADayToString(day: number): string {
+    const evolutionValue = this.evolutionAtADay(day);
+    return this.bigNumberToString(evolutionValue);
+  }
 
   computeEvolution(annualGrowthPercentage: number) {
     const ratio = new BigNumber(annualGrowthPercentage).dividedBy(100);
